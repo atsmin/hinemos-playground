@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+    manager:
+        build:
+            context: .
+            dockerfile: manager.Dockerfile
+        image: hinemos-manager
+        volumes:
+            - hinemos-data:/opt/hinemos/var/data/
+            - /sys/fs/cgroup:/sys/fs/cgroup:ro
+        privileged: true
+
+    web:
+        build:
+            context: .
+            dockerfile: web.Dockerfile
+        image: hinemos-web
+        ports:
+            - '80:80'
+        volumes:
+            - /sys/fs/cgroup:/sys/fs/cgroup:ro
+        privileged: true
+
+volumes:
+    hinemos-data:
