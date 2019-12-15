@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
     manager:
@@ -51,9 +51,7 @@ volumes:
 
 networks:
     hinemos_net:
-        driver: bridge
         ipam:
             driver: default
             config:
                 - subnet: 172.31.1.0/24
-                  gateway: 172.31.1.1
