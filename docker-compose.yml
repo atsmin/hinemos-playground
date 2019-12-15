@@ -2,10 +2,11 @@ version: '2'
 
 services:
     manager:
-        build:
-            context: .
-            dockerfile: manager.Dockerfile
-        image: hinemos-manager
+        # build:
+        #     context: .
+        #     dockerfile: ./Dockerfile/manager.Dockerfile
+        # image: hinemos-manager
+        image: aminami1127/hinemos-manager:6.2.2
         volumes:
             - hinemos-data:/opt/hinemos/var/data/
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
@@ -13,26 +14,28 @@ services:
         hostname: manager
         networks:
             hinemos_net:
-                ipv4_address: 172.28.1.10
+                ipv4_address: 172.31.1.10
 
     agent:
-        build:
-            context: .
-            dockerfile: agent.Dockerfile
-        image: hinemos-agent
+        # build:
+        #     context: .
+        #     dockerfile: ./Dockerfile/agent.Dockerfile
+        # image: hinemos-agent
+        image: aminami1127/hinemos-agent:6.2.2
         volumes:
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
         privileged: true
         hostname: agent
         networks:
             hinemos_net:
-                ipv4_address: 172.28.1.20
+                ipv4_address: 172.31.1.11
 
     web:
-        build:
-            context: .
-            dockerfile: web.Dockerfile
-        image: hinemos-web
+        # build:
+        #     context: .
+        #     dockerfile: ./Dockerfile/web.Dockerfile
+        # image: hinemos-web
+        image: aminami1127/hinemos-web:6.2.2
         ports:
             - '80:80'
         volumes:
@@ -41,7 +44,7 @@ services:
         hostname: web
         networks:
             hinemos_net:
-                ipv4_address: 172.28.1.30
+                ipv4_address: 172.31.1.12
 
 volumes:
     hinemos-data:
@@ -52,5 +55,5 @@ networks:
         ipam:
             driver: default
             config:
-                - subnet: 172.28.1.0/24
-                  gateway: 172.28.1.1
+                - subnet: 172.31.1.0/24
+                  gateway: 172.31.1.1
