@@ -4,13 +4,11 @@ services:
     manager:
         # build:
         #     context: .
-        #     dockerfile: ./Dockerfile/manager.Dockerfile
+        #     dockerfile: manager/Dockerfile
         # image: hinemos-manager
-        image: aminami1127/hinemos-manager:6.2.2
+        image: aminami1127/hinemos-manager
         volumes:
             - hinemos-data:/opt/hinemos/var/data/
-            - /sys/fs/cgroup:/sys/fs/cgroup:ro
-        privileged: true
         hostname: manager
         networks:
             hinemos_net:
@@ -19,12 +17,11 @@ services:
     agent:
         # build:
         #     context: .
-        #     dockerfile: ./Dockerfile/agent.Dockerfile
+        #     dockerfile: agent/Dockerfile
         # image: hinemos-agent
-        image: aminami1127/hinemos-agent:6.2.2
+        image: aminami1127/hinemos-agent
         volumes:
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
-        privileged: true
         hostname: agent
         networks:
             hinemos_net:
@@ -33,14 +30,11 @@ services:
     web:
         # build:
         #     context: .
-        #     dockerfile: ./Dockerfile/web.Dockerfile
+        #     dockerfile: web/Dockerfile
         # image: hinemos-web
-        image: aminami1127/hinemos-web:6.2.2
+        image: aminami1127/hinemos-web
         ports:
             - '80:80'
-        volumes:
-            - /sys/fs/cgroup:/sys/fs/cgroup:ro
-        privileged: true
         hostname: web
         networks:
             hinemos_net:
