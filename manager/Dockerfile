@@ -13,7 +13,9 @@ VOLUME /opt/hinemos/var/data
 
 EXPOSE 8080/tcp 8081/tcp 8082/tcp 514/tcp 514/udp 162/udp
 
-COPY manager/run.sh /opt/hinemos/bin
+WORKDIR /opt/hinemos/bin
 
-CMD ["/opt/hinemos/bin/run.sh"]
+COPY manager/run.sh .
+
+CMD ["./run.sh"]
 

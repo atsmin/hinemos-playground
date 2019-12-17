@@ -17,7 +17,9 @@ RUN yum -y install https://github.com/hinemos/hinemos/releases/download/v${HINEM
 
 EXPOSE 80
 
-COPY web/run.sh /opt/hinemos_web/bin
+WORKDIR /opt/hinemos_web/bin
 
-CMD ["/opt/hinemos_web/bin/run.sh"]
+COPY web/run.sh .
+
+CMD ["./run.sh"]
 

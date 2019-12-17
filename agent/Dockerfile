@@ -1,4 +1,4 @@
-FROM centos:7
+FROM rsyslog/rsyslog_base_centos7
 
 ENV HINEMOS_MAJOR 6.2
 ENV HINEMOS_MINOR 2
@@ -11,7 +11,9 @@ RUN yum -y update \
 
 EXPOSE 161/udp 24005/udp
 
-COPY agent/run.sh /opt/hinemos_agent/bin
+WORKDIR /opt/hinemos_agent/bin
 
-CMD ["/opt/hinemos_agent/bin/run.sh"]
+COPY agent/run.sh .
+
+CMD ["./run.sh"]
 

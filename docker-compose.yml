@@ -2,43 +2,46 @@ version: '3'
 
 services:
     manager:
-        # build:
-        #     context: .
-        #     dockerfile: manager/Dockerfile
-        # image: hinemos-manager
-        image: aminami1127/hinemos-manager
+        build:
+            context: .
+            dockerfile: manager/Dockerfile
+        image: hinemos-manager
+        # image: aminami1127/hinemos-manager
         volumes:
             - hinemos-data:/opt/hinemos/var/data/
         hostname: manager
         networks:
             hinemos_net:
                 ipv4_address: 172.31.1.10
+        container_name: hinemos-manager
 
     agent:
-        # build:
-        #     context: .
-        #     dockerfile: agent/Dockerfile
-        # image: hinemos-agent
-        image: aminami1127/hinemos-agent
+        build:
+            context: .
+            dockerfile: agent/Dockerfile
+        image: hinemos-agent
+        # image: aminami1127/hinemos-agent
         volumes:
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
         hostname: agent
         networks:
             hinemos_net:
                 ipv4_address: 172.31.1.11
+        container_name: hinemos-agent
 
     web:
-        # build:
-        #     context: .
-        #     dockerfile: web/Dockerfile
-        # image: hinemos-web
-        image: aminami1127/hinemos-web
+        build:
+            context: .
+            dockerfile: web/Dockerfile
+        image: hinemos-web
+        # image: aminami1127/hinemos-web
         ports:
             - '80:80'
         hostname: web
         networks:
             hinemos_net:
                 ipv4_address: 172.31.1.12
+        container_name: hinemos-web
 
 volumes:
     hinemos-data:

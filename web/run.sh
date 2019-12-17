@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Start hinemos_web
-/opt/hinemos_web/bin/tomcat_start.sh
+/opt/hinemos_web/bin/tomcat_start.sh -Wq
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start hinemos_web: $status"

@@ -17,7 +17,7 @@ if [ $status -ne 0 ]; then
 fi
 
 # Start rsyslog
-/usr/sbin/rsyslogd
+/usr/sbin/rsyslogd -n
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start rsyslog: $status"
